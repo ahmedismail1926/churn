@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Data (large files)
+data/raw/*.csv
+!data/raw/BankChurners.csv  # Keep original if small
+
+# Processed Data (can be regenerated)
+data/processed/*.csv
+data/processed/splits/*.csv
+data/processed/splits/*.pkl
+
+# Models (large files - can be regenerated)
+artifacts/models/*.pkl
+
+# Visualizations (can be regenerated)
+artifacts/visualizations/*.png
+artifacts/visualizations/*.jpg
+
+# Outputs (logs can be regenerated)
+outputs/*.txt
+
+# Feature Engineering Artifacts
+artifacts/feature_engineering/*.pkl
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+artifacts/logs/*.log
+*.log
+
+# Temporary files
+*.tmp
+*.temp
