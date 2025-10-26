@@ -120,7 +120,7 @@ def one_hot_encode_categorical_columns(df, categorical_columns=None, drop_first=
     return df_encoded, new_columns
 
 
-def scale_numerical_features(df, numerical_columns=None, method='standardize'):
+def scale_numerical_features(df, numerical_columns=None, method='standardize', exclude_columns=None):
     """
     Scale or normalize numerical features
     
@@ -128,6 +128,7 @@ def scale_numerical_features(df, numerical_columns=None, method='standardize'):
         df: DataFrame to process
         numerical_columns: List of numerical columns to scale. If None, scales all numeric.
         method: 'standardize' (z-score) or 'normalize' (min-max scaling)
+        exclude_columns: List of columns to exclude from scaling (e.g., target variable)
     
     Returns:
         DataFrame with scaled columns, scaler object
@@ -142,9 +143,19 @@ def scale_numerical_features(df, numerical_columns=None, method='standardize'):
         # Get all numerical columns
         numerical_columns = df_scaled.select_dtypes(include=[np.number]).columns.tolist()
     
+    # Exclude specified columns (e.g., target variable)
+    if exclude_columns is None:
+        exclude_columns = ['Attrition_Flag']  # Default: exclude target
+    
+    # Remove excluded columns from numerical_columns
+    numerical_columns = [col for col in numerical_columns if col not in exclude_columns]
+    
     if not numerical_columns:
         print("\n⚠ No numerical columns found to scale.")
         return df_scaled, None
+    
+    if exclude_columns:
+        print(f"\n⚠ Excluding from scaling: {exclude_columns}")
     
     print(f"\nScaling {len(numerical_columns)} numerical features:")
     
